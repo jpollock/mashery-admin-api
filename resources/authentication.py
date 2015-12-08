@@ -1,3 +1,4 @@
+import os
 from flask_restful import Resource, Api, reqparse, abort
 from masheryapi.services.v3.auth import Auth
 
@@ -11,9 +12,9 @@ class Authentication(Resource):
         parser.add_argument('username', type=str, help='username', required=True)
 
         args = parser.parse_args()
-        apikey = 'mgmxvzspbh9d4wwncder4u62'
-        secret = 'wtYsDAryQM'
-        redirect_uri = 'https://www.mashery.com'
+        apikey = os.environ['MASHERY_API_KEY']#'mgmxvzspbh9d4wwncder4u62'
+        secret = os.environ['MASHERY_API_SECRET']#'wtYsDAryQM'
+        redirect_uri = os.environ['MASHERY_REDIRECT_URI']#'https://www.mashery.com'
 
         mashery_auth = Auth('https', 'api.mashery.com', args.area_id, args.area_uuid, apikey, secret, 'APIDefinitionImporter')
         try:
