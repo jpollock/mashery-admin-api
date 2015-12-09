@@ -16,7 +16,7 @@ class Authentication(Resource):
         secret = os.environ['MASHERY_API_SECRET']#'wtYsDAryQM'
         redirect_uri = os.environ['MASHERY_REDIRECT_URI']#'https://www.mashery.com'
 
-        mashery_auth = Auth('https', 'api.mashery.com', args.area_id, args.area_uuid, apikey, secret, 'APIDefinitionImporter')
+        mashery_auth = Auth('https', 'api.mashery.com', None, args.area_uuid, apikey, secret, 'APIDefinitionImporter')
         try:
             access_token = mashery_auth.get_access_token(args.username, args.password, args.area_uuid)
         except ValueError as err:
