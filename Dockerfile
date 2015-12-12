@@ -30,5 +30,6 @@ RUN mkdir /code/logs
 
 # expose port(s)
 EXPOSE 80
+EXPOSE 443
 
 CMD ./run_service.sh
