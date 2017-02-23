@@ -20,10 +20,24 @@ class ExternalDefinition(Resource):
         import_external_api_definitions = ImportExternalApiDefinitions(mashery_v3)
 
         try:
-            imported_definition = import_external_api_definitions.import_definition(access_token, args.external_source, args.public_domain, args.create_package, args.create_iodoc)
-
+            imported_definition = import_external_api_definitions.import_definition(args.mashery_access_token, args.external_source, args.public_domain, args.create_package, args.create_iodoc)
         except ValueError as err:
             abort(500, message=err.args)
-        
+
+        if 'error' in imported_definition and imported_definition['error'] != None:
+            code = 500
+            message = imported_definition['error']
+
+            if 'api' in imported_definition['error']:
+                code = imported_definition['error']['api']['code']
+
+            if 'api' in imported_definition['error']:
+                code = imported_definition['error']['api']['code']
+
+            if 'api' in imported_definition['error']:
+                code = imported_definition['error']['api']['code']
+
+            abort(code, message=message)
+
         return imported_definition
 
