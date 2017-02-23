@@ -10,7 +10,7 @@ class FormatToApiDefinition(Resource):
     def post(self):
 
         parser = reqparse.RequestParser()
-        parser.add_argument('mashery_access_token', type=str, help='token',required=True)
+        #parser.add_argument('mashery_access_token', type=str, help='token',required=True)
         parser.add_argument('public_domain', type=str, help='Public domain to use for the new api', required=True)
         
         args = parser.parse_args()
